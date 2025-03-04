@@ -1,0 +1,14 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame" clip-path="url(#clip0_22_32)">
+<g id="SVGRepo_iconCarrier">
+<path id="Vector" d="M0 6.66669H30" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M3.75 11.6667L6.94014 27.263C7.26435 28.848 8.81734 30 10.6297 30H19.3703C21.1826 30 22.7357 28.8479 23.0599 27.263L26.25 11.6667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M9.375 3.33333C9.375 1.49238 11.0539 0 13.125 0H16.875C18.9461 0 20.625 1.49238 20.625 3.33333V6.66667H9.375V3.33333Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_22_32">
+<rect width="30" height="30" fill="white"/>
+</clipPath>
+</defs>
+</svg>

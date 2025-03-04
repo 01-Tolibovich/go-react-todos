@@ -1,0 +1,12 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame" clip-path="url(#clip0_22_27)">
+<g id="SVGRepo_iconCarrier">
+<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M15 0V1.7647C22.2988 1.7647 28.2353 7.70117 28.2353 15C28.2353 22.2988 22.2988 28.2353 15 28.2353C7.70117 28.2353 1.7647 22.2988 1.7647 15C1.7647 10.8265 3.74294 6.93883 7.05883 4.44177V10.5882H8.82352V1.7647H0V3.52941H5.35766C1.98528 6.36531 0 10.5424 0 15C0 23.2712 6.72883 30 15 30C23.2712 30 30 23.2712 30 15C30 6.72883 23.2712 0 15 0Z" fill="white"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_22_27">
+<rect width="30" height="30" fill="white"/>
+</clipPath>
+</defs>
+</svg>

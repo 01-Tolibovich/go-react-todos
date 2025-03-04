@@ -1,0 +1,289 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+
+.todo-form {
+  display: grid;
+  gap: 4px;
+
+  input {
+    border-radius: $radius $radius 0 0;
+  }
+
+  textarea {
+    border-radius: 0 0 $radius $radius;
+  }
+
+  button {
+
+    img {
+      width: 30px;
+      height: 30px;
+
+      @include mediaMin($md) {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+
+  @include mediaMin($md) {
+    grid-template-columns: 1fr auto;
+
+    input {
+      grid-column: 1/3;
+      border-radius: $radius $radius $radius 0;
+    }
+
+    textarea {
+      grid-column: 1/2;
+      border-radius: 0 $radius $radius $radius;
+    }
+
+    button {
+      grid-column: 2/3;
+      grid-row: 2/3;
+      height: 100%;
+      padding: 32px;
+      flex-direction: column;
+      gap: 20px
+    }
+  }
+
+  @include mediaMin($lg) {
+
+    button {
+      padding: 50px;
+    }
+  }
+}
+
+.todo-actions,
+.todo-list h2 {
+  margin: 80px auto 36px auto;
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: space-evenly;
+
+  button {
+    width: 60px;
+    height: 60px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @include mediaMin($md) {
+      width: 70px;
+      height: 70px;
+
+      img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    &:nth-child(1) {
+      background-color: $secondary-color;
+    }
+
+    &:nth-child(2) {
+      background-color: $third-color;
+    }
+  }
+
+  .delete-button {
+    opacity: 0.7;
+    box-shadow: none;
+
+    &.is-for-delete-exist {
+      opacity: 1;
+      box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.todo-list {
+  h2 {
+    text-align: center;
+    font-size: clamp(24px, 3vw, 32px);
+  }
+}
+
+.todo {
+  overflow: hidden;
+  margin-top: 10px;
+  border-radius: $radius;
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, auto);
+    grid-template-rows: 60px auto 60px;
+    background-color: #ffffff;
+    border-radius: $radius;
+    padding: 0 clamp(10px, 2vw, 26px);
+    box-shadow: 0px 2px 5px 0px #00000054;
+    transition: 200ms ease;
+    position: relative;
+    z-index: 10;
+
+    .todo-list-icon,
+    .delete-icon,
+    .check {
+      grid-row: 1/2;
+      align-self: center;
+    }
+
+    .delete-icon,
+    .check {
+      justify-self: end;
+      margin-left: 30px;
+      cursor: pointer;
+    }
+
+    hr {
+      grid-row: 2/3;
+      grid-column: 1/4;
+    }
+
+    h3,
+    .arrow-icon {
+      grid-row: 3/4;
+      align-self: center;
+      padding: 10px 0;
+    }
+
+    .arrow-icon {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    h3 {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      grid-column: 1/3;
+      cursor: pointer;
+    }
+
+    .arrow-icon {
+      grid-column: 3/4;
+      justify-self: end;
+      transform: rotate(360deg);
+      transition: 300ms ease;
+
+      &.arrow-opened {
+        transform: rotate(180deg);
+      }
+    }
+
+    @include mediaMin($lg) {
+      grid-template-columns: auto 1fr repeat(3, auto);
+      grid-template-rows: 70px;
+      gap: 32px;
+
+      .todo-list-icon,
+      .delete-icon,
+      .check {
+        grid-row: 1/2;
+        align-self: center;
+      }
+
+      .delete-icon,
+      .check {
+        justify-self: center;
+        margin-left: 0;
+      }
+
+      hr {
+        display: none;
+      }
+
+      h3,
+      .arrow-icon {
+        grid-row: 1/2;
+      }
+
+      .arrow-icon {
+        margin-right: 10px;
+      }
+
+      h3 {
+        grid-column: 2/3;
+      }
+
+      .arrow-icon {
+        grid-column: 5/6;
+        justify-self: end;
+      }
+    }
+  }
+
+  .description {
+    background-color: #ffffff;
+    padding: 40px clamp(10px, 2vw, 26px) 20px clamp(10px, 2vw, 26px);
+    margin: -60px auto 0 auto;
+    height: 0;
+    transform: translateY(-100%);
+    transition: 400ms 0ms ease;
+    border-radius: $radius;
+    max-width: $lg;
+
+    h4 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    h4,
+    p {
+      display: none;
+    }
+
+    &.fool-content {
+      height: auto;
+      transform: translateY(0);
+      transition: 400ms 200ms ease;
+      margin-top: -10px;
+
+      h4,
+      p {
+        display: block;
+      }
+
+      h4 {
+        border-bottom: 1px solid $primary-color;
+        padding-bottom: 8px;
+      }
+
+      p {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  &.is-comoplited {
+
+    .header {
+      background-color: #e9e9e9;
+
+      h3 {
+        text-decoration: line-through;
+      }
+    }
+
+    .description {
+      background-color: #e9e9e9;
+
+      h4,
+      p {
+        text-decoration: line-through;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import "./variables.scss";
+
+@mixin mediaMin($min) {
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin borderRadius {
+  border-radius: clamp(8px, 2vw, 16px);
+}
