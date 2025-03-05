@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { TodoForm, TodoList, TodosActions } from "./components/todos";
+import { useEffect, useState } from "react";
+import { TodoForm, TodoList } from "./components/todos";
 import "./App.scss";
-import { completeTodo, getTodos } from "./protocols/rest";
+import { completeTodo, createTodo, getTodos } from "./protocols/rest";
+import { deleteTodo } from "./protocols/rest/deleteTodo";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +25,8 @@ function App() {
     handleGetTodos();
   }, []);
 
-  const conpletedHandle = async (todoId) => {
+  const conpletedHandle = async (e, todoId) => {
+    e.stopPropagation();
     setIsLoading(true);
     await completeTodo(todoId)
     await handleGetTodos()
@@ -38,46 +39,32 @@ function App() {
     id: null,
     active: false,
   });
-  const handleToggleTodo = (todoId) => {
+  const handleToggleTodo = (e, todoId) => {
+    e.stopPropagation();
     setIsOpen((prevState) => ({
       id: todoId,
       active: prevState.id === todoId ? !prevState.active : true,
     }));
   };
 
-  const addTodoHandler = (title, description) => {
-    // const newTodo = {
-    //   title,
-    //   description,
-    //   isComplited: false,
-    //   id: uuidv4(),
-    // };
-    // setTodos([...todos, newTodo]);
+  const addTodoHandler = async (title, body) => {
+    const newTodo = {
+      title,
+      body,
+    };
+
+    setIsLoading(true)
+
+    await createTodo({...newTodo})
+    await handleGetTodos()
   };
 
-  const deleteTodoHandler = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+  const deleteTodoHandler = async (e, id) => {
+    e.stopPropagation();
+    setIsLoading(true)
+    await deleteTodo(id)
+    await handleGetTodos()
   };
-
-  // const toggleTodoHandler = (id) => {
-  //   setTodos(
-  //     todos.map((todo) =>
-  //       todo.id === id
-  //         ? { ...todo, isComplited: !todo.isComplited }
-  //         : { ...todo }
-  //     )
-  //   );
-  // };
-
-  const resetTodoHandler = () => {
-    setTodos([]);
-  };
-
-  const deleteCompletedTodosHandler = () => {
-    // setTodos(todos.filter((todo) => !todo.isComplited));
-  };
-
-  const complitedTodosCount = todos?.filter((todo) => todo.completed).length;
 
   return (
     <>
@@ -88,22 +75,12 @@ function App() {
               <h1>Todo</h1>
             </header>
             <TodoForm addTodo={addTodoHandler} />
-            {!!todos?.length && (
-              <TodosActions
-                resetTodo={resetTodoHandler}
-                deleteCompletedTodos={deleteCompletedTodosHandler}
-                completedTodosExist={!!complitedTodosCount}
-              />
-            )}
             <TodoList
               todos={todos}
               deleteTodo={deleteTodoHandler}
               conpletedHandle={conpletedHandle}
               isOpen={isOpen}
-              setIsOpen={setIsOpen}
               handleToggleTodo={handleToggleTodo}
-              // isLoading={isLoading}
-              // toggleTodo={toggleTodoHandler}
             />
           </div>
         </div>

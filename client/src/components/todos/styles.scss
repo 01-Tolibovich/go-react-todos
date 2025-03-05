@@ -1,10 +1,10 @@
 @import "../../styles/variables.scss";
 @import "../../styles/mixins.scss";
 
-
 .todo-form {
   display: grid;
   gap: 4px;
+  margin-bottom: 5rem;
 
   input {
     border-radius: $radius $radius 0 0;
@@ -15,7 +15,6 @@
   }
 
   button {
-
     img {
       width: 30px;
       height: 30px;
@@ -46,12 +45,11 @@
       height: 100%;
       padding: 32px;
       flex-direction: column;
-      gap: 20px
+      gap: 20px;
     }
   }
 
   @include mediaMin($lg) {
-
     button {
       padding: 50px;
     }
@@ -142,6 +140,19 @@
       justify-self: end;
       margin-left: 30px;
       cursor: pointer;
+    }
+
+    .check {
+      border: 2px solid #096a81;
+      border-radius: 50%;
+      padding: 3px;
+      width: 30px;
+      height: 30px;
+
+      &.is-complited {
+        padding: 0;
+        border: none;
+      }
     }
 
     hr {
@@ -268,7 +279,6 @@
   }
 
   &.is-comoplited {
-
     .header {
       background-color: #e9e9e9;
 
